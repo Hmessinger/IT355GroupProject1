@@ -15,6 +15,7 @@ import java.util.Objects;
 
 class BankAccount {
 
+    // DCL52-J: Do not declare more than one variable per declaration
     private final String name;
     private final int customerId;
     private final int accountNumber;
@@ -88,7 +89,6 @@ class BankAccount {
     // FIO03-J. Remove temporary files before termination
 
     // DCL02-J: Do not modify the collection's elements during an enhanced for statement
-
     public static void clearAccountLogFile() {
         String dirPath = "./AccountsCreated";
         Path directory = Paths.get(dirPath);
