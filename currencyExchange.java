@@ -48,6 +48,10 @@ class CurrencyExchange {
     BigDecimal result;
 
     try {
+      //Check for division by zero (NUM02-J)
+      if(fromRate.compareTo(BigDecimal.ZERO)==0){
+        throw new ArithmeticException("Cannot divide by zero");
+      }
       // EXP53-J: Use parentheses for precedence of operation
       // ERR00-J: Handle checked exceptions properly
       // NUM04-J: Do not use floating-point numbers if precise computation is required
