@@ -5,22 +5,27 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /*
- * This class creates a random password for the user by using the SecureRandom class. 
+ * This class creates a random password for the user by using the SecureRandom class. This implements ths rule: 
  * MSC02-J: Generate strong random numbers.
+ * 
+ * This class also implements the following rules and recommendations:
+ * EXP02-J: Do not use the Object.equals() method to compare two arrays.
+ * EXP00-J: Do not ignore values returned by methods.
+ * MET54-J: Always provide feedback about the resulting value of a method.
  */
 public class RandomPassword {
 
     // List of all the possible values that can go in the password
-    private static final String ALL_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!#$*./?";
+    private final String ALL_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~!#$*./?";
     // An instance of the SecureRandom class
-    private static final SecureRandom secureRandNum = new SecureRandom();
+    private final SecureRandom secureRandNum = new SecureRandom();
 
     /**
      * This method creates a random password using the SecureRandom class.
      * 
-     * @return random String password.
+     * @param account - User account
      */
-    public static void generateRandomPassword(BankAccount account) {
+    public void generateRandomPassword(BankAccount account) {
 
         String[] currentAccountInfo = new String[2];
         currentAccountInfo[0] = account.getName();
@@ -44,8 +49,14 @@ public class RandomPassword {
          * user name and password. Using the Arrays.equals method to compare the
          * contents of the arrays. The password was reset with a random password and
          * the method should return false because the contents in the arrays are not the
-         * same.
-         * EXP02-J: Do not use the Object.equals() method to compare two arrays.
+         * same. EXP02-J: Do not use the Object.equals() method to compare two arrays.
+         * 
+         * We are using the output of the Arrays.equals method to determine if the
+         * random password was set correctly. EXP00-J: Do not ignore values returned by
+         * methods.
+         * 
+         * We are providing feedback about the result of the Arrays.equals method.
+         * MET54-J: Always provide feedback about the resulting value of a method.
          */
         if (Arrays.equals(currentAccountInfo, newAccountInfo)) {
             System.out.println("The new password was not set correctly.");
