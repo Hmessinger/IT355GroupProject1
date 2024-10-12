@@ -21,7 +21,6 @@ class BankAccount {
     private double savingsBalance;
     private double checkingsBalance;
     private String password;
-    private String accountArr[] = new String[6];
 
     // NUM10-J. Do not construct BigDecimal objects from floating-point literals
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
@@ -44,22 +43,6 @@ class BankAccount {
         this.name = name;
         this.customerId = customerId;
         this.password = password;
-        accountArr[0] = name;
-        accountArr[1] = Integer.toString(customerId);
-        accountArr[2] = Integer.toString(accountNumber);
-        accountArr[3] = Double.toString(savingsBalance);
-        accountArr[4] = Double.toString(checkingsBalance);
-        accountArr[5] = password;
-    }
-
-    // Rather than returning the private mutable accountArr, we are creating a deep
-    // copy of it and returning the copy.
-    public String[] getAccountInfo() {
-        String accountArrCopy[] = new String[6];
-        for (int i = 0; i < accountArr.length; i++) {
-            accountArrCopy[i] = accountArr[i];
-        }
-        return accountArrCopy;
     }
 
     public void setSavingsBalance(double savingsBalance) {
