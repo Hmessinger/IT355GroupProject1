@@ -86,6 +86,9 @@ class BankAccount {
     }
 
     // FIO03-J. Remove temporary files before termination
+
+    // DCL02-J: Do not modify the collection's elements during an enhanced for statement
+
     public static void clearAccountLogFile() {
         String dirPath = "./AccountsCreated";
         Path directory = Paths.get(dirPath);
