@@ -145,8 +145,7 @@ public class BankSystem {
             TransactionHistory transactionHistory = TransactionHistory.createSafely();
 
             if (transactionHistory != null) {
-                List<String> transactions = List.of("Deposit: $500", "Withdrawal: $200",
-                        "Transfer to Account 654321: $100");
+                List<String> transactions = List.of("Deposit: $500", "Withdrawal: $200","Transfer to Account 654321: $100");
 
                 // Generate a receipt for the transactions
                 transactionHistory.generateReceipt(account, transactions);
