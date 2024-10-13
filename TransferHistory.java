@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransferHistory {
-    //This class has MET00
+    //This class has MET00 and ENV04
     private final List<String> history = new ArrayList<>();
 
     // Add transfer record to history
