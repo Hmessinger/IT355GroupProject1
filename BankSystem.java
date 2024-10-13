@@ -2,12 +2,8 @@
 // Main function file
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.sql.rowset.spi.TransactionalWriter;
 
 public class BankSystem {
 
