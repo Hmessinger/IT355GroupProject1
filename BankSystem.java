@@ -243,10 +243,8 @@ public class BankSystem {
                             int amount2 = scan.nextInt();
                             account.transferToSavings(amount2);
                             System.out.println("Transferred " + amount2 + " from Checking to Savings.");
-                            System.out
-                                    .println("Your current Savings Account balance is: " + account.getSavingsBalance());
-                            System.out.println(
-                                    "Your current Checking Account balance is: " + account.getCheckingsBalance());
+                            System.out.println("Your current Savings Account balance is: " + account.getSavingsBalance());
+                            System.out.println("Your current Checking Account balance is: " + account.getCheckingsBalance());
                             break;
                         case 3:
                             System.out.println("Transfer History here: ");
