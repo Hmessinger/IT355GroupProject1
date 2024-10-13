@@ -158,7 +158,7 @@ public class BankSystem {
 
         // Loop is working correctly
         int choice = 0;
-        while (choice != 8) {
+        while (choice != 9) {
             System.out.println("1:Deposit");
             System.out.println("2:Withdraw");
             System.out.println("3:Display Account");
@@ -173,9 +173,37 @@ public class BankSystem {
             choice = scan.nextInt();
             System.out.println("You selected: " + choice);
 
+            if (choice == 1) {
+
+            }
+
+            if (choice == 2) {
+
+            }
+
             if (choice == 3) {
                 System.out.println("\nYour account info:");
                 System.out.println(account);
+            }
+
+            if (choice == 4) {
+
+            }
+
+            if (choice == 5) {
+
+            }
+
+            if (choice == 6) {
+
+            }
+
+            if (choice == 7) {
+
+            }
+
+            if (choice == 8) {
+
             }
 
             if (choice != 9) {
