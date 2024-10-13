@@ -24,6 +24,7 @@ class BankAccount {
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
 
     // private final String password = "hello";
+    //MSC-03 
     public BankAccount(String name, int customerId, int accountNumber, double savingsBalance, double checkingsBalance) {
         this.checkingsBalance = checkingsBalance;
         this.savingsBalance = savingsBalance;
@@ -39,6 +40,7 @@ class BankAccount {
  * should be considered to avoid mixing types in arithmetic operations.
  * @param amount the amount to transfer from the checking account to the savings account
  * @return if the transfer was successful
+ * MET50-J Avoids ambiguous or confusing uses of overloading
  */
     public boolean transferToSavings(double amount){
         if(amount > 0  && amount <= checkingsBalance){
@@ -56,7 +58,7 @@ class BankAccount {
  * @return if the transfer was successful 
  */
     public boolean transferToChecking(double amount){
-        if(amount > 0 && amount <= savingsBalance){
+        if(amount > 0 && amount <= savingsBalance){ //NUM52-J
             savingsBalance -= amount;
             checkingsBalance += amount;
             return true;

@@ -12,9 +12,10 @@ import java.util.TimerTask;
 public final class RecurringTransfer {
     private Timer timer;
     private final TransferManager transferManager;
-
+//This class also has OBJ57 because methods locating in final class
 /**
  * Constructs a RecurringTransfer instance with the specified TransferManager
+ * MET05
  * @param transferManager the TransferManager responsible for handling transfers
  */
     public RecurringTransfer(TransferManager transferManager){
