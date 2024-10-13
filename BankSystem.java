@@ -139,18 +139,16 @@ public class BankSystem {
                 // Generate a receipt for the transactions
                 transactionHistory.generateReceipt(account, transactions);
 
-                // Optional: Cleanup old receipts
+                // Cleanup old receipts
                 transactionHistory.cleanupOldReceipts();
             }
         } catch (Exception e) {
             System.err.println("Unexpected error: " + e.getMessage());
         }
 
-        // Constructor will go here
-        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
-                initialSavingsDeposit, userPassword);
+        // Account Constructor
+        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit, initialSavingsDeposit, userPassword);
 
-        // Constructor will go here
         System.out.print("\nAccount created successfully!\n");
         System.out.print(account);
 
