@@ -173,6 +173,7 @@ public class BankSystem {
                         }
                         account.setCheckingsBalance(account.getCheckingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getCheckingsBalance());
+                        transactions.add("Deposit into checking: +" + temp);
                         break;
                         
                     } else if (temp == 2) {
@@ -186,6 +187,7 @@ public class BankSystem {
                         }
                         account.setSavingsBalance(account.getSavingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getSavingsBalance());
+                        transactions.add("Deposit into savings: +" + temp);
                         break;
                     } else {
                         System.out.println("Please enter either 1 or 2");
@@ -213,6 +215,7 @@ public class BankSystem {
                         } else {
                             account.setCheckingsBalance(account.getCheckingsBalance() - temp);
                             System.out.println("Your new balance: " + account.getCheckingsBalance());
+                            transactions.add("Withdraw from checking: -" + temp);
                             break;
                         }
                     } else if (temp == 2) {
@@ -230,6 +233,7 @@ public class BankSystem {
                         } else {
                             account.setSavingsBalance(account.getSavingsBalance() - temp);
                             System.out.println("Your new balance: " + account.getSavingsBalance());
+                            transactions.add("Withdraw from savings: -" + temp);
                             break;
                         }
                     } else {
@@ -301,6 +305,7 @@ public class BankSystem {
                 try {
                     BigDecimal convertedAmount = currencyExchange.convert(amount, fromCurrency, toCurrency);
                     System.out.println("Converted amount: " + convertedAmount + " " + toCurrency);
+                    transactions.add("Converted amount: " + convertedAmount + " " + toCurrency);
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
                 }
@@ -325,11 +330,13 @@ public class BankSystem {
                             System.out.print("Please enter the amount you would like to transfer: ");
                             int amount1 = scan.nextInt();
                             System.out.println("Transferred " + amount1 + " from Savings to Checking.");
+                            transactions.add("Transferred " + amount1 + " from Savings to Checking.");
                             break;
                         case 2:
                             System.out.print("Please enter the amount you would like to transfer: ");
                             int amount2 = scan.nextInt();
                             System.out.println("Transferred " + amount2 + " from Checking to Savings.");
+                            transactions.add("Transferred " + amount2 + " from Checking to Savings.");
                             break;
                         case 3:
                             System.out.println("Transfer History here.");
