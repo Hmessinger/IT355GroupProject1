@@ -50,7 +50,9 @@ public final class TransferManager { // MET03-J: Declaring class final to preven
      */
     public void transferToChecking(BankAccount account, double amount){
         if(account.transferToChecking(amount)){
-            System.out.println("Transfer Successful: Savings to CHecking");
+            System.out.println("Transfer Successful: Savings to Checking");
+            System.out.println("New balance of Checking account: " + "$" + account.getCheckingsBalance());
+            System.out.println("New balance of Savings Account: " + "$" + account.getSavingsBalance());
         }
         else{
             System.out.println("Transfer Failed: Insufficient Funds");
