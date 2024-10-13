@@ -3,10 +3,11 @@
 import java.util.Scanner;
 import java.util.List;
 
+
 public class BankSystem {
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Create Account:");
         String userName;
         String userPassword;
         int userCustomerID;
@@ -23,7 +24,6 @@ public class BankSystem {
         // Asks for users name
         // System.out.println("Please input the customer name: ");
         // String userName = scan.nextLine();
-
         while (true) {
             System.out.println("Please input the customer name: ");
             userName = scan.nextLine();
@@ -37,7 +37,6 @@ public class BankSystem {
         // Asks for the users customer id
         // System.out.println("\nPlease input the customer ID: ");
         // int userCustomerID = scan.nextInt();
-
         // Asks for the users customer id, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the customer ID: ");
@@ -56,7 +55,6 @@ public class BankSystem {
         // Asks for the account number
         // System.out.println("\nPlease input the account number: ");
         // int userAcctNum = scan.nextInt();
-
         // Asks for the account number, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the account number: ");
@@ -74,7 +72,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input the account password: ");
         // String userPassword = scan.next();
-
         // Ask for the account password, it will loop until a valid password is entered
         while (true) {
             System.out.println("\nPlease input the account password: ");
@@ -88,7 +85,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input initial deposit for checking account: ");
         // double initialCheckingDeposit = scan.nextDouble();
-
         // Ask for the initial checking deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -111,7 +107,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input initial deposit for savings account: ");
         // double initialSavingsDeposit = scan.nextDouble();
-
         // Ask for the initial savings deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -131,6 +126,7 @@ public class BankSystem {
                 scan.next();
             }
         }
+
 
         try {
             BankAccount account = new BankAccount("Ethan", 1, 123456, 1000.00, 500.00);
@@ -152,8 +148,13 @@ public class BankSystem {
         }
 
         // Constructor will go here
+=======
+        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit, initialSavingsDeposit, userPassword);
 
-        System.out.println("\nAccount created successfully!");
+
+        // Constructor will go here
+        System.out.print("\nAccount created successfully!\n");
+        System.out.print(account);
 
         System.out.println("\n     Bank Menu");
         System.out.println("======================");
@@ -173,6 +174,11 @@ public class BankSystem {
             System.out.println("Please input your choice <1-8>");
             choice = scan.nextInt();
             System.out.println("You selected: " + choice);
+
+            if (choice == 3) {
+                System.out.println("\nYour account info:");
+                System.out.println(account);
+            }
 
             if (choice != 8) {
                 System.out.println("\n     Bank Menu");
