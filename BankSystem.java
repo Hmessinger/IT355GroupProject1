@@ -140,7 +140,7 @@ public class BankSystem {
                 // Generate a receipt for the transactions
                 transactionHistory.generateReceipt(account, transactions);
 
-                // Optional: Cleanup old receipts
+                // Cleanup old receipts
                 transactionHistory.cleanupOldReceipts();
             }
         } catch (Exception e) {
@@ -148,7 +148,6 @@ public class BankSystem {
         }
 
         // Constructor will go here
-=======
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit, initialSavingsDeposit, userPassword);
 
 
