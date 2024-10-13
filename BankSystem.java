@@ -238,9 +238,10 @@ public class BankSystem {
                         case 2:
                             System.out.print("Please enter the amount you would like to transfer: ");
                             int amount2 = scan.nextInt();
+                            manager.transferToSavings(account, amount2);
                             break;
                         case 3:
-                            System.out.println("Transfer History here: ");
+                            System.out.println("Current Transfer History: ");
                             history = th.viewHistory();
                             if (history.isEmpty()) {
                                 System.out.println("No transfer found.");
