@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 class BankAccount {
-
+    //OBJ51-J: Minimize access to class members my marking fields as private
     // DCL52-J: Do not declare more than one variable per declaration
     private final String name;
     private final int customerId;
