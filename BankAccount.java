@@ -104,6 +104,39 @@ class BankAccount {
     public String getPassword() {
         return password;
     }
+/**
+ * Transfers a specified amount from the checking account to the savings account.
+ * This method ensures that the amount to be transferred is positive and 
+ * does not exceed the available balance in the checking account. 
+ * It also adheres to the rule NUM52-J, which states that numeric promotion 
+ * should be considered to avoid mixing types in arithmetic operations.
+ * @param amount the amount to transfer from the checking account to the savings account
+ * @return if the transfer was successful
+ * MET50-J Avoids ambiguous or confusing uses of overloading
+ */
+public boolean transferToSavings(double amount){
+    if(amount > 0  && amount <= checkingsBalance){
+        checkingsBalance -= amount;
+        savingsBalance += amount;
+        return true;
+    }
+    return false;
+}
+/**
+* Transfers a specified amount from the savings account to the checking account.
+* >This method ensures that the amount to be transferred is positive and 
+* does not exceed the available balance in the savings account.
+* @param amount the amount to transfer from the savings account to the checking account
+* @return if the transfer was successful 
+*/
+public boolean transferToChecking(double amount){
+    if(amount > 0 && amount <= savingsBalance){ //NUM52-J
+        savingsBalance -= amount;
+        checkingsBalance += amount;
+        return true;
+    }
+    return false;
+}
 
     // MET09-J: Classes that define an equals() method must also define a hashCode()
     // method
