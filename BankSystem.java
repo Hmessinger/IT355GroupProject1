@@ -1,9 +1,16 @@
 
 // Main function file
+<<<<<<< Updated upstream
 import java.math.BigDecimal;
 import java.util.ArrayList;
+=======
+import java.util.ArrayList;
+import java.util.Scanner;
+>>>>>>> Stashed changes
 import java.util.List;
 import java.util.Scanner;
+
+import javax.sql.rowset.spi.TransactionalWriter;
 
 public class BankSystem {
 
@@ -22,9 +29,14 @@ public class BankSystem {
             System.err.println("Failed to initialize TransactionHistory");
             return;
         }
+<<<<<<< Updated upstream
     
         List<String> transactions = new ArrayList<>();
         
+=======
+
+        List<String> transactions = new ArrayList<>();
+>>>>>>> Stashed changes
 
         /*
          * We are performing validation checks on the user input before it is being used
@@ -138,7 +150,11 @@ public class BankSystem {
             }
         }
 
+<<<<<<< Updated upstream
         CurrencyExchange currencyExchange = new CurrencyExchange();
+=======
+
+>>>>>>> Stashed changes
 
         // Account Constructor
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
@@ -191,6 +207,7 @@ public class BankSystem {
             if (choice == 6) {
                 System.out.println("\nYour transaction history:");
                 transactionHistory.generateReceipt(account, transactions);
+                
             }
 
             if (choice == 7) {
