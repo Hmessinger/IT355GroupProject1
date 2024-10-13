@@ -149,10 +149,53 @@ public class BankSystem {
             System.out.println("6:Currency Conversion");
             System.out.println("7:Transfer Funds");
             System.out.println("8: Exit");
-
             System.out.println("Please input your choice <1-8>");
             choice = scan.nextInt();
-            System.out.println("You selected: " + choice);
+            if (choice == 7) {
+                // Start a sub-loop for transfer funds
+                int transferChoice = 0;
+
+                while (true) {
+                    System.out.println("\nTransfer Funds Menu:");
+                    System.out.println("1: Transfer from Savings to Checking");
+                    System.out.println("2: Transfer from Checking to Savings");
+                    System.out.println("3: Show Transfer History");
+                    System.out.println("4: Set Up Recurring Transfer");
+                    System.out.println("5: Exit Transfer Menu");
+                    System.out.print("Please input your choice <1-5>: ");
+                    transferChoice = scan.nextInt();
+
+                    switch (transferChoice) {
+                        case 1:
+                            System.out.print("Please enter the amount you would like to transfer: ");
+                            int amount1 = scan.nextInt();
+                            System.out.println("Transferred " + amount1 + " from Savings to Checking.");
+                            break;
+                        case 2:
+                            System.out.print("Please enter the amount you would like to transfer: ");
+                            int amount2 = scan.nextInt();
+                            System.out.println("Transferred " + amount2 + " from Checking to Savings.");
+                            break;
+                        case 3:
+                            System.out.println("Transfer History here.");
+                            break;
+                        case 4:
+                            System.out.println("Please set up a recurring transfer.");
+                            break;
+                        case 5:
+                            System.out.println("Exiting Transfer Funds Menu.");
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please select between 1 and 5.");
+                            break;
+                    }
+
+                    // Exit the transfer menu if option 5 is chosen
+                    if (transferChoice == 5) {
+                        break;
+                    }
+                }
+            }
 
             if (choice != 8) {
                 System.out.println("\n     Bank Menu");
