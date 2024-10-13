@@ -104,6 +104,8 @@ class BankAccount {
     public String getPassword() {
         return password;
     }
+
+    TransferHistory transferHistory = new TransferHistory();
 /**
  * Transfers a specified amount from the checking account to the savings account.
  * This method ensures that the amount to be transferred is positive and 
@@ -118,6 +120,10 @@ public boolean transferToSavings(double amount){
     if(amount > 0  && amount <= checkingsBalance){
         checkingsBalance -= amount;
         savingsBalance += amount;
+
+        String record = "Transferred $" + amount + " from checkings to savings.";
+        transferHistory.addRecord(record);
+        
         return true;
     }
     return false;
@@ -133,6 +139,9 @@ public boolean transferToChecking(double amount){
     if(amount > 0 && amount <= savingsBalance){ //NUM52-J
         savingsBalance -= amount;
         checkingsBalance += amount;
+        
+        String record = "Transferred $" + amount + " from savings to checking.";
+        transferHistory.addRecord(record);
         return true;
     }
     return false;
