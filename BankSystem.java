@@ -1,8 +1,13 @@
 
 // Main function file
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
-import java.math.BigDecimal;
+import java.util.Scanner;
+
+import javax.sql.rowset.spi.TransactionalWriter;
 
 public class BankSystem {
 
@@ -15,6 +20,17 @@ public class BankSystem {
         double initialCheckingDeposit;
         double initialSavingsDeposit;
 
+        System.out.println("Welcome to the Bank System.");
+
+        // Transaction Constructor
+        TransactionHistory transactionHistory = TransactionHistory.createSafely();
+        if (transactionHistory == null) {
+            System.err.println("Failed to initialize TransactionHistory");
+            return;
+        }
+
+        List<String> transactions = new ArrayList<>();
+
         /*
          * We are performing validation checks on the user input before it is being used
          * by the BankAccount constructor. This prevents the constructor from throwing
@@ -22,8 +38,6 @@ public class BankSystem {
          * OBJ11-J: Be wary of letting constructors throw exceptions.
          */
         // Asks for users name
-        // System.out.println("Please input the customer name: ");
-        // String userName = scan.nextLine();
         while (true) {
             System.out.println("Please input the customer name: ");
             userName = scan.nextLine();
@@ -34,9 +48,6 @@ public class BankSystem {
             }
         }
 
-        // Asks for the users customer id
-        // System.out.println("\nPlease input the customer ID: ");
-        // int userCustomerID = scan.nextInt();
         // Asks for the users customer id, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the customer ID: ");
@@ -52,9 +63,6 @@ public class BankSystem {
             }
         }
 
-        // Asks for the account number
-        // System.out.println("\nPlease input the account number: ");
-        // int userAcctNum = scan.nextInt();
         // Asks for the account number, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the account number: ");
@@ -70,8 +78,6 @@ public class BankSystem {
             }
         }
 
-        // System.out.println("\nPlease input the account password: ");
-        // String userPassword = scan.next();
         // Ask for the account password, it will loop until a valid password is entered
         while (true) {
             System.out.println("\nPlease input the account password: ");
@@ -82,9 +88,6 @@ public class BankSystem {
                 System.out.println("Invalid input. Please enter a password that is not empty.");
             }
         }
-
-        // System.out.println("\nPlease input initial deposit for checking account: ");
-        // double initialCheckingDeposit = scan.nextDouble();
         // Ask for the initial checking deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -105,8 +108,6 @@ public class BankSystem {
             }
         }
 
-        // System.out.println("\nPlease input initial deposit for savings account: ");
-        // double initialSavingsDeposit = scan.nextDouble();
         // Ask for the initial savings deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -127,27 +128,6 @@ public class BankSystem {
             }
         }
 
-        try {
-            BankAccount account = new BankAccount("Ethan", 1, 123456, 1000.00, 500.00);
-
-            // Use factory method to create TransactionHistory safely
-            TransactionHistory transactionHistory = TransactionHistory.createSafely();
-
-            if (transactionHistory != null) {
-                List<String> transactions = List.of("Deposit: $500", "Withdrawal: $200",
-                        "Transfer to Account 654321: $100");
-
-                // Generate a receipt for the transactions
-                transactionHistory.generateReceipt(account, transactions);
-
-                // Cleanup old receipts
-                transactionHistory.cleanupOldReceipts();
-            }
-        } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
-        }
-
-
         CurrencyExchange currencyExchange = new CurrencyExchange();
 
         // Account Constructor
@@ -155,7 +135,6 @@ public class BankSystem {
                 initialSavingsDeposit, userPassword);
 
         System.out.print("\nAccount created successfully!\n");
-        System.out.print(account);
 
         System.out.println("\n     Bank Menu");
         System.out.println("======================");
@@ -175,6 +154,7 @@ public class BankSystem {
 
             System.out.println("Please input your choice <1-9>");
             choice = scan.nextInt();
+            scan.nextLine();
             System.out.println("You selected: " + choice);
 
             if (choice == 1) {
@@ -191,14 +171,32 @@ public class BankSystem {
             }
 
             if (choice == 4) {
-
+                ManualPassword mp = new ManualPassword();
+                String newPassword;
+                while (true) {
+                    System.out.println("\nPlease input your new password: ");
+                    newPassword = scan.nextLine();
+                    if (newPassword != null && !newPassword.isEmpty()) {
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter a password that is not empty.");
+                    }
+                }
+                mp.generateManualPassword(account, newPassword);
             }
 
             if (choice == 5) {
-
+                System.out.println("\n");
+                RandomPassword rp = new RandomPassword();
+                rp.generateRandomPassword(account);
             }
 
             if (choice == 6) {
+                System.out.println("\nYour transaction history:");
+                transactionHistory.generateReceipt(account, transactions);
+                if (transactionHistory != null) {
+                    System.out.println("Generated transaction receipt");
+                }
 
             }
 
@@ -221,17 +219,57 @@ public class BankSystem {
                 }
             }
 
-
             if (choice == 8) {
+                // sub-loop for transfer funds
+                int transferChoice = 0;
 
+                while (true) {
+                    System.out.println("\nTransfer Funds Menu:");
+                    System.out.println("1: Transfer from Savings to Checking");
+                    System.out.println("2: Transfer from Checking to Savings");
+                    System.out.println("3: Show Transfer History");
+                    System.out.println("4: Set Up Recurring Transfer");
+                    System.out.println("5: Exit Transfer Menu");
+                    System.out.print("Please input your choice <1-5>: ");
+                    transferChoice = scan.nextInt();
+
+                    switch (transferChoice) {
+                        case 1:
+                            System.out.print("Please enter the amount you would like to transfer: ");
+                            int amount1 = scan.nextInt();
+                            System.out.println("Transferred " + amount1 + " from Savings to Checking.");
+                            break;
+                        case 2:
+                            System.out.print("Please enter the amount you would like to transfer: ");
+                            int amount2 = scan.nextInt();
+                            System.out.println("Transferred " + amount2 + " from Checking to Savings.");
+                            break;
+                        case 3:
+                            System.out.println("Transfer History here.");
+                            break;
+                        case 4:
+                            System.out.println("Please set up a recurring transfer.");
+                            break;
+                        case 5:
+                            System.out.println("Exiting Transfer Funds Menu.");
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please select between 1 and 5.");
+                            break;
+                    }
+
+                    // exit transfer menu if option 5 is chosen
+                    if (transferChoice == 5) {
+                        break;
+                    }
+                }
             }
-
             if (choice != 9) {
                 System.out.println("\n     Bank Menu");
                 System.out.println("======================");
             }
         }
-        System.out.println("\nloop has exited");
+        System.out.println("\nYou have exited the bank system.");
         scan.close();
     }
 }

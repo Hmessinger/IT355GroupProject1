@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 class BankAccount {
-    //OBJ51-J: Minimize access to class members my marking fields as private
+    // OBJ51-J: Minimize access to class members my marking fields as private
     // DCL52-J: Do not declare more than one variable per declaration
     private final String name;
     private final int customerId;
@@ -27,29 +27,36 @@ class BankAccount {
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
 
     // private final String password = "hello";
-/**
- * Constructs a {@code BankAccount} with the specified account holder's information,
- * including their name, customer ID, account number, and initial balances for both 
- * savings and checking accounts.
- * 
- * This constructor initializes all the fields for a bank account without hardcoding 
- * any sensitive information like customer ID or account number. By accepting these 
- * details as parameters, it ensures that sensitive information is provided dynamically 
- * and securely at runtime, adhering to secure coding guidelines.
- * 
- * Compliance with MSC03-J: Never hard code sensitive information:
- * 
- * This constructor does not hard code sensitive information such as customer ID, 
- * account number, or balances. These values are provided through parameters, 
- * allowing for secure input handling at runtime.
- * 
- * 
- * @param name the name of the account holder
- * @param customerId the unique customer ID associated with the account holder
- * @param accountNumber the unique account number of the bank account
- * @param savingsBalance the initial balance in the savings account
- * @param checkingsBalance the initial balance in the checking account
- */ 
+    /**
+     * Constructs a {@code BankAccount} with the specified account holder's
+     * information,
+     * including their name, customer ID, account number, and initial balances for
+     * both
+     * savings and checking accounts.
+     * 
+     * This constructor initializes all the fields for a bank account without
+     * hardcoding
+     * any sensitive information like customer ID or account number. By accepting
+     * these
+     * details as parameters, it ensures that sensitive information is provided
+     * dynamically
+     * and securely at runtime, adhering to secure coding guidelines.
+     * 
+     * Compliance with MSC03-J: Never hard code sensitive information:
+     * 
+     * This constructor does not hard code sensitive information such as customer
+     * ID,
+     * account number, or balances. These values are provided through parameters,
+     * allowing for secure input handling at runtime.
+     * 
+     * 
+     * @param name             the name of the account holder
+     * @param customerId       the unique customer ID associated with the account
+     *                         holder
+     * @param accountNumber    the unique account number of the bank account
+     * @param savingsBalance   the initial balance in the savings account
+     * @param checkingsBalance the initial balance in the checking account
+     */
     public BankAccount(String name, int customerId, int accountNumber, double savingsBalance, double checkingsBalance) {
         this.checkingsBalance = checkingsBalance;
         this.savingsBalance = savingsBalance;
@@ -104,39 +111,47 @@ class BankAccount {
     public String getPassword() {
         return password;
     }
-/**
- * Transfers a specified amount from the checking account to the savings account.
- * This method ensures that the amount to be transferred is positive and 
- * does not exceed the available balance in the checking account. 
- * It also adheres to the rule NUM52-J, which states that numeric promotion 
- * should be considered to avoid mixing types in arithmetic operations.
- * @param amount the amount to transfer from the checking account to the savings account
- * @return if the transfer was successful
- * MET50-J Avoids ambiguous or confusing uses of overloading
- */
-public boolean transferToSavings(double amount){
-    if(amount > 0  && amount <= checkingsBalance){
-        checkingsBalance -= amount;
-        savingsBalance += amount;
-        return true;
+
+    /**
+     * Transfers a specified amount from the checking account to the savings
+     * account.
+     * This method ensures that the amount to be transferred is positive and
+     * does not exceed the available balance in the checking account.
+     * It also adheres to the rule NUM52-J, which states that numeric promotion
+     * should be considered to avoid mixing types in arithmetic operations.
+     * 
+     * @param amount the amount to transfer from the checking account to the savings
+     *               account
+     * @return if the transfer was successful
+     *         MET50-J Avoids ambiguous or confusing uses of overloading
+     */
+    public boolean transferToSavings(double amount) {
+        if (amount > 0 && amount <= checkingsBalance) {
+            checkingsBalance -= amount;
+            savingsBalance += amount;
+            return true;
+        }
+        return false;
     }
-    return false;
-}
-/**
-* Transfers a specified amount from the savings account to the checking account.
-* >This method ensures that the amount to be transferred is positive and 
-* does not exceed the available balance in the savings account.
-* @param amount the amount to transfer from the savings account to the checking account
-* @return if the transfer was successful 
-*/
-public boolean transferToChecking(double amount){
-    if(amount > 0 && amount <= savingsBalance){ //NUM52-J
-        savingsBalance -= amount;
-        checkingsBalance += amount;
-        return true;
+
+    /**
+     * Transfers a specified amount from the savings account to the checking
+     * account.
+     * >This method ensures that the amount to be transferred is positive and
+     * does not exceed the available balance in the savings account.
+     * 
+     * @param amount the amount to transfer from the savings account to the checking
+     *               account
+     * @return if the transfer was successful
+     */
+    public boolean transferToChecking(double amount) {
+        if (amount > 0 && amount <= savingsBalance) { // NUM52-J
+            savingsBalance -= amount;
+            checkingsBalance += amount;
+            return true;
+        }
+        return false;
     }
-    return false;
-}
 
     // MET09-J: Classes that define an equals() method must also define a hashCode()
     // method
@@ -164,6 +179,7 @@ public boolean transferToChecking(double amount){
         return "Name: " + this.name + "\n"
                 + "Customer Id: " + this.customerId + "\n"
                 + "Account Number: " + this.accountNumber + "\n"
+                + "Account Password: " + this.password + "\n"
                 + "Savings Balance: " + this.savingsBalance + "\n"
                 + "Checkings Balance " + this.checkingsBalance + "\n\n";
     }
@@ -197,7 +213,8 @@ public boolean transferToChecking(double amount){
 
     // FIO03-J. Remove temporary files before termination
 
-    // DCL02-J: Do not modify the collection's elements during an enhanced for statement
+    // DCL02-J: Do not modify the collection's elements during an enhanced for
+    // statement
     public static void clearAccountLogFile() {
         String dirPath = "./AccountsCreated";
         Path directory = Paths.get(dirPath);
