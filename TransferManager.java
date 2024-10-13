@@ -1,4 +1,5 @@
 public final class TransferManager { // MET03-J: Declaring class final to prevent overriding methods that involve transferring funds which is a security sensitive operation
+    //This class has MET03
     //Transfer from checking to savings
     public void transferToSavings(BankAccount account, double amount){
         if(account.transferToSavings(amount)){

@@ -24,6 +24,7 @@ class BankAccount {
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
 
     // private final String password = "hello";
+    //MSC-03 
     public BankAccount(String name, int customerId, int accountNumber, double savingsBalance, double checkingsBalance) {
         this.checkingsBalance = checkingsBalance;
         this.savingsBalance = savingsBalance;
@@ -31,9 +32,17 @@ class BankAccount {
         this.name = name;
         this.customerId = customerId;
     }
-    //Transfer from Checking to Saving - tyler
+/**
+ * Transfers a specified amount from the checking account to the savings account.
+ * This method ensures that the amount to be transferred is positive and 
+ * does not exceed the available balance in the checking account. 
+ * It also adheres to the rule NUM52-J, which states that numeric promotion 
+ * should be considered to avoid mixing types in arithmetic operations.
+ * @param amount the amount to transfer from the checking account to the savings account
+ * @return if the transfer was successful
+ * MET50-J Avoids ambiguous or confusing uses of overloading
+ */
     public boolean transferToSavings(double amount){
-        //NUM52-J: Be aware of numeric promotion(ensuring no mix of types in arithmetic) - Tyler
         if(amount > 0  && amount <= checkingsBalance){
             checkingsBalance -= amount;
             savingsBalance += amount;
@@ -41,9 +50,15 @@ class BankAccount {
         }
         return false;
     }
-    //Transfer from savings to checking - tyler
+/**
+ * Transfers a specified amount from the savings account to the checking account.
+ * >This method ensures that the amount to be transferred is positive and 
+ * does not exceed the available balance in the savings account.
+ * @param amount the amount to transfer from the savings account to the checking account
+ * @return if the transfer was successful 
+ */
     public boolean transferToChecking(double amount){
-        if(amount > 0 && amount <= savingsBalance){
+        if(amount > 0 && amount <= savingsBalance){ //NUM52-J
             savingsBalance -= amount;
             checkingsBalance += amount;
             return true;
