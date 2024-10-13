@@ -133,6 +133,8 @@ public class BankSystem {
         // Account Constructor
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
                 initialSavingsDeposit, userPassword);
+        //TransferManager constructor
+        TransferManager manager = new TransferManager();
 
         System.out.print("\nAccount created successfully!\n");
 
@@ -314,41 +316,43 @@ public class BankSystem {
             if (choice == 8) {
                 // sub-loop for transfer funds
                 int transferChoice = 0;
-
+                
                 while (true) {
                     System.out.println("\nTransfer Funds Menu:");
                     System.out.println("1: Transfer from Savings to Checking");
                     System.out.println("2: Transfer from Checking to Savings");
                     System.out.println("3: Show Transfer History");
-                    System.out.println("4: Set Up Recurring Transfer");
-                    System.out.println("5: Exit Transfer Menu");
-                    System.out.print("Please input your choice <1-5>: ");
+                    System.out.println("4: Exit");
+                    System.out.print("Please input your choice <1-4>: ");
                     transferChoice = scan.nextInt();
 
                     switch (transferChoice) {
                         case 1:
                             System.out.print("Please enter the amount you would like to transfer: ");
-                            int amount1 = scan.nextInt();
-                            System.out.println("Transferred " + amount1 + " from Savings to Checking.");
-                            transactions.add("Transferred " + amount1 + " from Savings to Checking.");
+                            double amount1 = scan.nextDouble();
+                            manager.transferToChecking(account, amount1);
                             break;
                         case 2:
                             System.out.print("Please enter the amount you would like to transfer: ");
-                            int amount2 = scan.nextInt();
-                            System.out.println("Transferred " + amount2 + " from Checking to Savings.");
-                            transactions.add("Transferred " + amount2 + " from Checking to Savings.");
+                            double amount2 = scan.nextDouble();
+                            manager.transferToSavings(account, amount2);
                             break;
                         case 3:
-                            System.out.println("Transfer History here.");
+                            System.out.println("\nCurrent Transfer History: ");
+                            
+                            if (account.transferHistory.viewHistory().isEmpty()) {
+                                System.out.println("No transfer found.");
+                            } else {
+                                for(String record :account.transferHistory.viewHistory()){
+                                    System.out.println(record);
+                                }
+                            }
                             break;
                         case 4:
-                            System.out.println("Please set up a recurring transfer.");
-                            break;
-                        case 5:
                             System.out.println("Exiting Transfer Funds Menu.");
                             break;
                         default:
-                            System.out.println("Invalid choice. Please select between 1 and 5.");
+                            System.out.println("Invalid choice. Please select between 1 and 4.");
                             break;
                     }
 
