@@ -129,7 +129,7 @@ public class BankSystem {
         // Account Constructor
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
                 initialSavingsDeposit, userPassword);
-        //TransferManager constructor
+        // TransferManager constructor
         TransferManager manager = new TransferManager();
 
         System.out.print("\nAccount created successfully!\n");
@@ -158,30 +158,33 @@ public class BankSystem {
             if (choice == 1) {
                 double temp;
                 while (true) {
-                    System.out.println("Please select the account you wish to deposit into (1 or 2):\n(1) Checking\n(2) Savings");
+                    System.out.println(
+                            "Please select the account you wish to deposit into (1 or 2):\n(1) Checking\n(2) Savings");
                     temp = scan.nextInt();
                     if (temp == 1) {
                         System.out.println("Your current balance: " + account.getCheckingsBalance());
                         System.out.println("How much do you wish to deposit?");
-                        while (true) { 
+                        while (true) {
                             temp = scan.nextDouble();
                             if (temp <= 0) {
                                 System.out.println("Please enter a non-negative number");
-                            } else break;
+                            } else
+                                break;
                         }
                         account.setCheckingsBalance(account.getCheckingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getCheckingsBalance());
                         transactions.add("Deposit into checking: +" + temp);
                         break;
-                        
+
                     } else if (temp == 2) {
                         System.out.println("Your current balance: " + account.getSavingsBalance());
                         System.out.println("How much do you wish to deposit?");
-                        while (true) { 
+                        while (true) {
                             temp = scan.nextDouble();
                             if (temp <= 0) {
                                 System.out.println("Please enter a non-negative number");
-                            } else break;
+                            } else
+                                break;
                         }
                         account.setSavingsBalance(account.getSavingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getSavingsBalance());
@@ -195,20 +198,23 @@ public class BankSystem {
             }
 
             if (choice == 2) {
-                System.out.println("Please select the account you wish to withdraw from (1 or 2):\n(1) Checking\n(2) Savings");
+                System.out.println(
+                        "Please select the account you wish to withdraw from (1 or 2):\n(1) Checking\n(2) Savings");
                 double temp = scan.nextInt();
                 while (true) {
                     if (temp == 1) {
                         System.out.println("Your current balance: " + account.getCheckingsBalance());
                         System.out.println("How much do you wish to withdraw?");
-                        while (true) { 
+                        while (true) {
                             temp = scan.nextDouble();
                             if (temp <= 0) {
                                 System.out.println("Please enter a non-negative number");
-                            } else break;
+                            } else
+                                break;
                         }
                         if (account.getCheckingsBalance() - temp <= -1) {
-                            System.out.println("You do not have enough funds in your account to complete your withdraw request");
+                            System.out.println(
+                                    "You do not have enough funds in your account to complete your withdraw request");
                             break;
                         } else {
                             account.setCheckingsBalance(account.getCheckingsBalance() - temp);
@@ -219,14 +225,16 @@ public class BankSystem {
                     } else if (temp == 2) {
                         System.out.println("Your current balance: " + account.getSavingsBalance());
                         System.out.println("How much do you wish to withdraw?");
-                        while (true) { 
+                        while (true) {
                             temp = scan.nextDouble();
                             if (temp <= 0) {
                                 System.out.println("Please enter a non-negative number");
-                            } else break;
+                            } else
+                                break;
                         }
                         if (account.getSavingsBalance() - temp <= -1) {
-                            System.out.println("You do not have enough funds in your account to complete your withdraw request.");
+                            System.out.println(
+                                    "You do not have enough funds in your account to complete your withdraw request.");
                             break;
                         } else {
                             account.setSavingsBalance(account.getSavingsBalance() - temp);
@@ -275,7 +283,7 @@ public class BankSystem {
                         transactionHistory.cleanupOldReceipts();
                         System.out.println("Removed old receipts");
                     }
-                
+
                     System.out.println("Would you like to generate a transaction history receipt? (Y/N)");
                     temp = scan.next().toUpperCase();
                     if ("Y".equals(temp)) {
@@ -312,7 +320,7 @@ public class BankSystem {
             if (choice == 8) {
                 // sub-loop for transfer funds
                 int transferChoice = 0;
-                
+
                 while (true) {
                     System.out.println("\nTransfer Funds Menu:");
                     System.out.println("1: Transfer from Savings to Checking");
@@ -335,11 +343,11 @@ public class BankSystem {
                             break;
                         case 3:
                             System.out.println("\nCurrent Transfer History: ");
-                            
+
                             if (account.transferHistory.viewHistory().isEmpty()) {
                                 System.out.println("No transfer found.");
                             } else {
-                                for(String record :account.transferHistory.viewHistory()){
+                                for (String record : account.transferHistory.viewHistory()) {
                                     System.out.println(record);
                                 }
                             }
@@ -352,8 +360,8 @@ public class BankSystem {
                             break;
                     }
 
-                    // exit transfer menu if option 5 is chosen
-                    if (transferChoice == 5) {
+                    // exit transfer menu if option 4 is chosen
+                    if (transferChoice == 4) {
                         break;
                     }
                 }
