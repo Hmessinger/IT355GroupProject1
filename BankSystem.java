@@ -158,20 +158,27 @@ public class BankSystem {
             System.out.println("You selected: " + choice);
 
             if (choice == 1) {
-                System.out.println("Please select the account you wish to deposit into (1 or 2):\n(1) Checking\n(2) Savings");
-                double temp = scan.nextInt();
-                if (temp == 1) {
-                    System.out.println("Your current balance: " + account.getCheckingsBalance());
-                    System.out.println("How much do you wish to deposit?");
-                    temp = scan.nextDouble();
-                    account.setCheckingsBalance(account.getCheckingsBalance() + temp);
-                    System.out.println("Your new balance: " + account.getCheckingsBalance());
-                } else if (temp == 2) {
-                    System.out.println("Your current balance: " + account.getSavingsBalance());
-                    System.out.println("How much do you wish to deposit?");
-                    temp = scan.nextDouble();
-                    account.setSavingsBalance(account.getSavingsBalance() + temp);
-                    System.out.println("Your new balance: " + account.getSavingsBalance());
+                double temp;
+                while (true) {
+                    System.out.println("Please select the account you wish to deposit into (1 or 2):\n(1) Checking\n(2) Savings");
+                    temp = scan.nextInt();
+                    if (temp == 1) {
+                        System.out.println("Your current balance: " + account.getCheckingsBalance());
+                        System.out.println("How much do you wish to deposit?");
+                        temp = scan.nextDouble();
+                        account.setCheckingsBalance(account.getCheckingsBalance() + temp);
+                        System.out.println("Your new balance: " + account.getCheckingsBalance());
+                        break;
+                    } else if (temp == 2) {
+                        System.out.println("Your current balance: " + account.getSavingsBalance());
+                        System.out.println("How much do you wish to deposit?");
+                        temp = scan.nextDouble();
+                        account.setSavingsBalance(account.getSavingsBalance() + temp);
+                        System.out.println("Your new balance: " + account.getSavingsBalance());
+                        break;
+                    } else {
+                        System.out.println("Please enter either 1 or 2");
+                    }
                 }
 
             }
@@ -179,25 +186,33 @@ public class BankSystem {
             if (choice == 2) {
                 System.out.println("Please select the account you wish to withdraw from (1 or 2):\n(1) Checking\n(2) Savings");
                 double temp = scan.nextInt();
-                if (temp == 1) {
-                    System.out.println("Your current balance: " + account.getCheckingsBalance());
-                    System.out.println("How much do you wish to withdraw?");
-                    temp = scan.nextDouble();
-                    if (account.getCheckingsBalance() - temp <= -1) {
-                        System.out.println("You do not have enough funds in your account to complete your withdraw request");
+                while (true) {
+                    if (temp == 1) {
+                        System.out.println("Your current balance: " + account.getCheckingsBalance());
+                        System.out.println("How much do you wish to withdraw?");
+                        temp = scan.nextDouble();
+                        if (account.getCheckingsBalance() - temp <= -1) {
+                            System.out.println("You do not have enough funds in your account to complete your withdraw request");
+                            break;
+                        } else {
+                            account.setCheckingsBalance(account.getCheckingsBalance() - temp);
+                            System.out.println("Your new balance: " + account.getCheckingsBalance());
+                            break;
+                        }
+                    } else if (temp == 2) {
+                        System.out.println("Your current balance: " + account.getSavingsBalance());
+                        System.out.println("How much do you wish to withdraw?");
+                        temp = scan.nextDouble();
+                        if (account.getSavingsBalance() - temp <= -1) {
+                            System.out.println("You do not have enough funds in your account to complete your withdraw request.");
+                            break;
+                        } else {
+                            account.setSavingsBalance(account.getSavingsBalance() - temp);
+                            System.out.println("Your new balance: " + account.getSavingsBalance());
+                            break;
+                        }
                     } else {
-                        account.setCheckingsBalance(account.getCheckingsBalance() - temp);
-                        System.out.println("Your new balance: " + account.getCheckingsBalance());
-                    }
-                } else if (temp == 2) {
-                    System.out.println("Your current balance: " + account.getSavingsBalance());
-                    System.out.println("How much do you wish to withdraw?");
-                    temp = scan.nextDouble();
-                    if (account.getSavingsBalance() - temp <= -1) {
-                        System.out.println("You do not have enough funds in your account to complete your withdraw request.");
-                    } else {
-                        account.setSavingsBalance(account.getSavingsBalance() - temp);
-                        System.out.println("Your new balance: " + account.getSavingsBalance());
+                        System.out.println("Please enter either 1 or 2");
                     }
                 }
 
