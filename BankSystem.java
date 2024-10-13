@@ -216,9 +216,7 @@ public class BankSystem {
             if (choice == 8) {
                 // sub-loop for transfer funds
                 int transferChoice = 0;
-                TransferHistory th = new TransferHistory();
-                List<String> history = new ArrayList<>();
-
+                
                 while (true) {
                     System.out.println("\nTransfer Funds Menu:");
                     System.out.println("1: Transfer from Savings to Checking");
@@ -241,12 +239,14 @@ public class BankSystem {
                             manager.transferToSavings(account, amount2);
                             break;
                         case 3:
-                            System.out.println("Current Transfer History: ");
-                            history = th.viewHistory();
-                            if (history.isEmpty()) {
+                            System.out.println("\nCurrent Transfer History: ");
+                            
+                            if (account.transferHistory.viewHistory().isEmpty()) {
                                 System.out.println("No transfer found.");
                             } else {
-                                history.forEach(System.out::println);
+                                for(String record :account.transferHistory.viewHistory()){
+                                    System.out.println(record);
+                                }
                             }
                             break;
                         case 4:
