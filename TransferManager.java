@@ -54,4 +54,7 @@ public final class TransferManager { // MET03-J: Declaring class final to preven
             System.out.println("Transfer Failed: Insufficient Funds");
         }
     }
+    public TransferManager(){
+
+    }
 }
