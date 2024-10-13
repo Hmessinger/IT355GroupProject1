@@ -1,12 +1,9 @@
 
 // Main function file
-<<<<<<< Updated upstream
 import java.math.BigDecimal;
 import java.util.ArrayList;
-=======
 import java.util.ArrayList;
 import java.util.Scanner;
->>>>>>> Stashed changes
 import java.util.List;
 import java.util.Scanner;
 
@@ -147,11 +144,7 @@ public class BankSystem {
             }
         }
 
-<<<<<<< Updated upstream
         CurrencyExchange currencyExchange = new CurrencyExchange();
-=======
-
->>>>>>> Stashed changes
 
         // Account Constructor
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
@@ -218,7 +211,10 @@ public class BankSystem {
             if (choice == 6) {
                 System.out.println("\nYour transaction history:");
                 transactionHistory.generateReceipt(account, transactions);
-                
+                if (transactionHistory != null) {
+                    System.out.println("Generated transaction receipt");
+                }
+
             }
 
             if (choice == 7) {
