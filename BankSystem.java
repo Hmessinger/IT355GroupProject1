@@ -147,7 +147,8 @@ public class BankSystem {
         }
 
         // Account Constructor
-        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit, initialSavingsDeposit, userPassword);
+        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
+                initialSavingsDeposit, userPassword);
 
         System.out.print("\nAccount created successfully!\n");
         System.out.print(account);
@@ -161,11 +162,12 @@ public class BankSystem {
             System.out.println("1:Deposit");
             System.out.println("2:Withdraw");
             System.out.println("3:Display Account");
-            System.out.println("4:Change Password");
-            System.out.println("5:Transaction History");
-            System.out.println("6:Currency Conversion");
-            System.out.println("7:Transfer Funds");
-            System.out.println("8: Exit");
+            System.out.println("4:Manually Change Password");
+            System.out.println("5:Generate Random Password");
+            System.out.println("6:Transaction History");
+            System.out.println("7:Currency Conversion");
+            System.out.println("8:Transfer Funds");
+            System.out.println("9: Exit");
 
             System.out.println("Please input your choice <1-8>");
             choice = scan.nextInt();
@@ -176,7 +178,7 @@ public class BankSystem {
                 System.out.println(account);
             }
 
-            if (choice != 8) {
+            if (choice != 9) {
                 System.out.println("\n     Bank Menu");
                 System.out.println("======================");
             }
