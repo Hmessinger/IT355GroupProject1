@@ -138,26 +138,6 @@ public class BankSystem {
             }
         }
 
-        try {
-            BankAccount account = new BankAccount("Ethan", 1, 123456, 1000.00, 500.00);
-
-            // Use factory method to create TransactionHistory safely
-            TransactionHistory transactionHistory = TransactionHistory.createSafely();
-
-            if (transactionHistory != null) {
-                List<String> transactions = List.of("Deposit: $500", "Withdrawal: $200","Transfer to Account 654321: $100");
-
-                // Generate a receipt for the transactions
-                transactionHistory.generateReceipt(account, transactions);
-
-                // Cleanup old receipts
-                transactionHistory.cleanupOldReceipts();
-            }
-        } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
-        }
-
-
         CurrencyExchange currencyExchange = new CurrencyExchange();
 
         // Account Constructor
