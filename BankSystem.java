@@ -192,10 +192,23 @@ public class BankSystem {
             }
 
             if (choice == 6) {
-                System.out.println("\nYour transaction history:");
-                transactionHistory.generateReceipt(account, transactions);
-                if (transactionHistory != null) {
-                    System.out.println("Generated transaction receipt");
+                if (choice == 6) {
+                    System.out.println("Would you like to clear your old receipts? (Y/N)");
+                    String temp = scan.next().toUpperCase();
+                    if ("Y".equals(temp)) {
+                        transactionHistory.cleanupOldReceipts();
+                        System.out.println("Removed old receipts");
+                    }
+                
+                    System.out.println("Would you like to generate a transaction history receipt? (Y/N)");
+                    temp = scan.next().toUpperCase();
+                    if ("Y".equals(temp)) {
+                        transactionHistory.generateReceipt(account, transactions);
+                        if (transactionHistory != null) {
+                            System.out.println("Generated transaction receipt in " + userAcctNum + "-receipt.txt");
+                        }
+                    }
+                    System.out.println("Returning to main menu");
                 }
 
             }
