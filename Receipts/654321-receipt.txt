@@ -1,0 +1,20 @@
+Transaction History Receipt
+Account Name: Ethan
+Account Number: 654321
+Date: Sun Oct 13 14:15:55 CDT 2024
+
+Transactions:
+
+Savings Balance: 1000.0
+Checkings Balance: 1200.0
+--------------------------------------------
+Transaction History Receipt
+Account Name: Ethan
+Account Number: 654321
+Date: Sun Oct 13 14:16:55 CDT 2024
+
+Transactions:
+
+Savings Balance: 1000.0
+Checkings Balance: 1200.0
+--------------------------------------------
