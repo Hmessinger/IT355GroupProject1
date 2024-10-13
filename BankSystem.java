@@ -5,6 +5,8 @@ public class BankSystem {
 
         // Account is created first and then we enter the loop of functionalities.
 
+        // Use a switch case to handle all of the options the user can select.
+
         // When the account is being created, check to make sure the password isn't null
         // or empty. If it is then throw an exception before putting the value in the
         // constructor/object creation.
@@ -19,7 +21,8 @@ public class BankSystem {
 
         // Change Tyler's transfer history method to return a copy of the history
         // arraylist and then print the arraylist in main. OBJ05-J: Do not return
-        // references to private mutable class members.
+        // references to private mutable class members. Return the array to the transfer
+        // funds portion in main and then print the array in main.
 
     }
 }

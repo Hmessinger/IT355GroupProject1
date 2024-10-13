@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
-/*
- * This class creates a random password for the user by using the SecureRandom class. This implements ths rule: 
+/**
+ * This class creates a random password for the user by using the SecureRandom
+ * class. This implements ths rule:
  * MSC02-J: Generate strong random numbers.
  * 
  * This class also implements the following rules and recommendations:
