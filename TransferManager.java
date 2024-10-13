@@ -7,13 +7,35 @@
  * By declaring the class final, this class prevents unauthorized or malicious 
  * overriding of methods that manage security-sensitive operations, such as transferring funds between accounts.
  * 
+ * MET05-J: Ensure that constructors call non-overrideable methods.
+ * 
  * The methods provided in this class ensure the safe and correct transfer of funds 
  * from checking to savings accounts, and vice versa, while providing feedback on the success or failure 
  * of the transfer operation.
  */
-public final class TransferManager { // MET03-J: Declaring class final to prevent overriding methods that involve transferring funds which is a security sensitive operation
-    // MET03-J: Declaring the class final to prevent overriding methods that involve 
-    // transferring funds, a security-sensitive operation.
+public final class TransferManager {
+    
+    /**
+     * The constructor of the {@code TransferManager} class.
+     * 
+     * MET05-J: The constructor initializes secure operations or setup and calls 
+     * a final method to confirm initialization.
+     */
+    public TransferManager() {
+        // Call a non-overridable (final) method to initialize or perform a setup task
+        initializeManager();
+    }
+
+    /**
+     * Initialize the TransferManager.
+     * 
+     * This method is declared final to prevent overriding, ensuring that the initialization
+     * is always secure and consistent. It is called in the constructor to adhere to MET05-J.
+     */
+    private final void initializeManager() {
+        // Any setup logic can go here. For now, let's just print an initialization message.
+        System.out.println("TransferManager initialized. Secure fund transfers are ready.");
+    }
 
     /**
      * Transfers funds from the checking account to the savings account.
@@ -26,13 +48,12 @@ public final class TransferManager { // MET03-J: Declaring class final to preven
      * @param account the bank account from which to transfer funds
      * @param amount the amount of money to transfer
      */
-    public void transferToSavings(BankAccount account, double amount){
-        if(account.transferToSavings(amount)){
+    public final void transferToSavings(BankAccount account, double amount) {
+        if (account.transferToSavings(amount)) {
             System.out.println("Transfer Successful: Checking to Savings");
             System.out.println("New balance of Savings account: " + "$" + account.getSavingsBalance());
             System.out.println("New balance of Checking Account: " + "$" + account.getCheckingsBalance());
-        }
-        else{
+        } else {
             System.out.println("Transfer Failed: Insufficient Funds");
         }
     }
@@ -48,17 +69,14 @@ public final class TransferManager { // MET03-J: Declaring class final to preven
      * @param account the bank account from which to transfer funds
      * @param amount the amount of money to transfer
      */
-    public void transferToChecking(BankAccount account, double amount){
-        if(account.transferToChecking(amount)){
+    public final void transferToChecking(BankAccount account, double amount) {
+        if (account.transferToChecking(amount)) {
             System.out.println("Transfer Successful: Savings to Checking");
             System.out.println("New balance of Checking account: " + "$" + account.getCheckingsBalance());
             System.out.println("New balance of Savings Account: " + "$" + account.getSavingsBalance());
-        }
-        else{
+        } else {
             System.out.println("Transfer Failed: Insufficient Funds");
         }
     }
-    public TransferManager(){
-
-    }
 }
+

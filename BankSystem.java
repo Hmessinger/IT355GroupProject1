@@ -232,12 +232,12 @@ public class BankSystem {
                     switch (transferChoice) {
                         case 1:
                             System.out.print("Please enter the amount you would like to transfer: ");
-                            int amount1 = scan.nextInt();
+                            double amount1 = scan.nextDouble();
                             manager.transferToChecking(account, amount1);
                             break;
                         case 2:
                             System.out.print("Please enter the amount you would like to transfer: ");
-                            int amount2 = scan.nextInt();
+                            double amount2 = scan.nextDouble();
                             manager.transferToSavings(account, amount2);
                             break;
                         case 3:
@@ -250,7 +250,9 @@ public class BankSystem {
                             }
                             break;
                         case 4:
-                            System.out.println("Please set up a recurring transfer.");
+                            System.out.println("Please enter the information below.");
+                            System.out.println("How much would you like to transfer?");
+                            double amount3 = scan.nextDouble();
                             break;
                         case 5:
                             System.out.println("Exiting Transfer Funds Menu.");
