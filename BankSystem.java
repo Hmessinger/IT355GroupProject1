@@ -165,14 +165,25 @@ public class BankSystem {
                     if (temp == 1) {
                         System.out.println("Your current balance: " + account.getCheckingsBalance());
                         System.out.println("How much do you wish to deposit?");
-                        temp = scan.nextDouble();
+                        while (true) { 
+                            temp = scan.nextDouble();
+                            if (temp <= 0) {
+                                System.out.println("Please enter a non-negative number");
+                            } else break;
+                        }
                         account.setCheckingsBalance(account.getCheckingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getCheckingsBalance());
                         break;
+                        
                     } else if (temp == 2) {
                         System.out.println("Your current balance: " + account.getSavingsBalance());
                         System.out.println("How much do you wish to deposit?");
-                        temp = scan.nextDouble();
+                        while (true) { 
+                            temp = scan.nextDouble();
+                            if (temp <= 0) {
+                                System.out.println("Please enter a non-negative number");
+                            } else break;
+                        }
                         account.setSavingsBalance(account.getSavingsBalance() + temp);
                         System.out.println("Your new balance: " + account.getSavingsBalance());
                         break;
@@ -190,7 +201,12 @@ public class BankSystem {
                     if (temp == 1) {
                         System.out.println("Your current balance: " + account.getCheckingsBalance());
                         System.out.println("How much do you wish to withdraw?");
-                        temp = scan.nextDouble();
+                        while (true) { 
+                            temp = scan.nextDouble();
+                            if (temp <= 0) {
+                                System.out.println("Please enter a non-negative number");
+                            } else break;
+                        }
                         if (account.getCheckingsBalance() - temp <= -1) {
                             System.out.println("You do not have enough funds in your account to complete your withdraw request");
                             break;
@@ -202,7 +218,12 @@ public class BankSystem {
                     } else if (temp == 2) {
                         System.out.println("Your current balance: " + account.getSavingsBalance());
                         System.out.println("How much do you wish to withdraw?");
-                        temp = scan.nextDouble();
+                        while (true) { 
+                            temp = scan.nextDouble();
+                            if (temp <= 0) {
+                                System.out.println("Please enter a non-negative number");
+                            } else break;
+                        }
                         if (account.getSavingsBalance() - temp <= -1) {
                             System.out.println("You do not have enough funds in your account to complete your withdraw request.");
                             break;
