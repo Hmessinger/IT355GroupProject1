@@ -1,17 +1,30 @@
 
 // Main function file
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BankSystem {
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Create Account:");
         String userName;
         String userPassword;
         int userCustomerID;
         int userAcctNum;
         double initialCheckingDeposit;
         double initialSavingsDeposit;
+
+        // Transaction Constructor
+        TransactionHistory transactionHistory = TransactionHistory.createSafely();
+        if (transactionHistory == null) {
+            System.err.println("Failed to initialize TransactionHistory");
+            return;
+        }
+    
+        List<String> transactions = new ArrayList<>();
+        
 
         /*
          * We are performing validation checks on the user input before it is being used
@@ -22,7 +35,6 @@ public class BankSystem {
         // Asks for users name
         // System.out.println("Please input the customer name: ");
         // String userName = scan.nextLine();
-
         while (true) {
             System.out.println("Please input the customer name: ");
             userName = scan.nextLine();
@@ -36,7 +48,6 @@ public class BankSystem {
         // Asks for the users customer id
         // System.out.println("\nPlease input the customer ID: ");
         // int userCustomerID = scan.nextInt();
-
         // Asks for the users customer id, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the customer ID: ");
@@ -55,7 +66,6 @@ public class BankSystem {
         // Asks for the account number
         // System.out.println("\nPlease input the account number: ");
         // int userAcctNum = scan.nextInt();
-
         // Asks for the account number, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the account number: ");
@@ -73,7 +83,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input the account password: ");
         // String userPassword = scan.next();
-
         // Ask for the account password, it will loop until a valid password is entered
         while (true) {
             System.out.println("\nPlease input the account password: ");
@@ -87,7 +96,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input initial deposit for checking account: ");
         // double initialCheckingDeposit = scan.nextDouble();
-
         // Ask for the initial checking deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -110,7 +118,6 @@ public class BankSystem {
 
         // System.out.println("\nPlease input initial deposit for savings account: ");
         // double initialSavingsDeposit = scan.nextDouble();
-
         // Ask for the initial savings deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -131,28 +138,83 @@ public class BankSystem {
             }
         }
 
-        // Constructor will go here
+        CurrencyExchange currencyExchange = new CurrencyExchange();
 
-        System.out.println("\nAccount created successfully!");
+        // Account Constructor
+        BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
+                initialSavingsDeposit, userPassword);
+
+        System.out.print("\nAccount created successfully!\n");
+        System.out.print(account);
 
         System.out.println("\n     Bank Menu");
         System.out.println("======================");
 
         // Loop is working correctly
         int choice = 0;
-        while (choice != 8) {
+        while (choice != 9) {
             System.out.println("1:Deposit");
             System.out.println("2:Withdraw");
             System.out.println("3:Display Account");
-            System.out.println("4:Change Password");
-            System.out.println("5:Transaction History");
-            System.out.println("6:Currency Conversion");
-            System.out.println("7:Transfer Funds");
-            System.out.println("8: Exit");
-            System.out.println("Please input your choice <1-8>");
+            System.out.println("4:Manually Change Password");
+            System.out.println("5:Generate Random Password");
+            System.out.println("6:Transaction History");
+            System.out.println("7:Currency Conversion");
+            System.out.println("8:Transfer Funds");
+            System.out.println("9: Exit");
+
+            System.out.println("Please input your choice <1-9>");
             choice = scan.nextInt();
+            System.out.println("You selected: " + choice);
+
+            if (choice == 1) {
+
+            }
+
+            if (choice == 2) {
+
+            }
+
+            if (choice == 3) {
+                System.out.println("\nYour account info:");
+                System.out.println(account);
+            }
+
+            if (choice == 4) {
+
+            }
+
+            if (choice == 5) {
+
+            }
+
+            if (choice == 6) {
+                System.out.println("\nYour transaction history:");
+                transactionHistory.generateReceipt(account, transactions);
+            }
+
             if (choice == 7) {
-                // Start a sub-loop for transfer funds
+                System.out.println("Please enter the amount to convert: ");
+                BigDecimal amount = scan.nextBigDecimal();
+                scan.nextLine();
+
+                System.out.println("Enter the currency you are converting from (USD, EUR, JPY, GBP, AUD): ");
+                String fromCurrency = scan.nextLine().toUpperCase();
+
+                System.out.println("Enter the currency you are converting to (USD, EUR, JPY, GBP, AUD): ");
+                String toCurrency = scan.nextLine().toUpperCase();
+
+                try {
+                    BigDecimal convertedAmount = currencyExchange.convert(amount, fromCurrency, toCurrency);
+                    System.out.println("Converted amount: " + convertedAmount + " " + toCurrency);
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+            }
+
+
+            if (choice == 8) {
+                // sub-loop for transfer funds
                 int transferChoice = 0;
 
                 while (true) {
@@ -190,14 +252,13 @@ public class BankSystem {
                             break;
                     }
 
-                    // Exit the transfer menu if option 5 is chosen
+                    // exit transfer menu if option 5 is chosen
                     if (transferChoice == 5) {
                         break;
                     }
                 }
             }
-
-            if (choice != 8) {
+            if (choice != 9) {
                 System.out.println("\n     Bank Menu");
                 System.out.println("======================");
             }
