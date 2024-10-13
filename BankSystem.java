@@ -22,9 +22,8 @@ public class BankSystem {
             System.err.println("Failed to initialize TransactionHistory");
             return;
         }
-    
+
         List<String> transactions = new ArrayList<>();
-        
 
         /*
          * We are performing validation checks on the user input before it is being used
@@ -212,10 +211,11 @@ public class BankSystem {
                 }
             }
 
-
             if (choice == 8) {
                 // sub-loop for transfer funds
                 int transferChoice = 0;
+                TransferHistory th = new TransferHistory();
+                List<String> history = new ArrayList<>();
 
                 while (true) {
                     System.out.println("\nTransfer Funds Menu:");
@@ -233,19 +233,29 @@ public class BankSystem {
                             int amount1 = scan.nextInt();
                             account.transferToChecking(amount1);
                             System.out.println("Transferred " + amount1 + " from Savings to Checking.");
-                            System.out.println("Your current Checking Account balance is: " + account.getCheckingsBalance());
-                            System.out.println("Your current Savings Account balance is: " + account.getSavingsBalance());
+                            System.out.println(
+                                    "Your current Checking Account balance is: " + account.getCheckingsBalance());
+                            System.out
+                                    .println("Your current Savings Account balance is: " + account.getSavingsBalance());
                             break;
                         case 2:
                             System.out.print("Please enter the amount you would like to transfer: ");
                             int amount2 = scan.nextInt();
                             account.transferToSavings(amount2);
                             System.out.println("Transferred " + amount2 + " from Checking to Savings.");
-                            System.out.println("Your current Savings Account balance is: " + account.getSavingsBalance());
-                            System.out.println("Your current Checking Account balance is: " + account.getCheckingsBalance());
+                            System.out
+                                    .println("Your current Savings Account balance is: " + account.getSavingsBalance());
+                            System.out.println(
+                                    "Your current Checking Account balance is: " + account.getCheckingsBalance());
                             break;
                         case 3:
                             System.out.println("Transfer History here: ");
+                            history = th.viewHistory();
+                            if (history.isEmpty()) {
+                                System.out.println("No transfer found.");
+                            } else {
+                                history.forEach(System.out::println);
+                            }
                             break;
                         case 4:
                             System.out.println("Please set up a recurring transfer.");
