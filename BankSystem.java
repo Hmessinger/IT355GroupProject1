@@ -169,7 +169,7 @@ public class BankSystem {
             System.out.println("8:Transfer Funds");
             System.out.println("9: Exit");
 
-            System.out.println("Please input your choice <1-8>");
+            System.out.println("Please input your choice <1-9>");
             choice = scan.nextInt();
             System.out.println("You selected: " + choice);
 
