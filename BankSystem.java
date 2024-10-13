@@ -2,6 +2,7 @@
 // Main function file
 import java.util.Scanner;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class BankSystem {
 
@@ -146,6 +147,9 @@ public class BankSystem {
             System.err.println("Unexpected error: " + e.getMessage());
         }
 
+
+        CurrencyExchange currencyExchange = new CurrencyExchange();
+
         // Account Constructor
         BankAccount account = new BankAccount(userName, userCustomerID, userAcctNum, initialCheckingDeposit,
                 initialSavingsDeposit, userPassword);
@@ -199,8 +203,24 @@ public class BankSystem {
             }
 
             if (choice == 7) {
+                System.out.println("Please enter the amount to convert: ");
+                BigDecimal amount = scan.nextBigDecimal();
+                scan.nextLine();
 
+                System.out.println("Enter the currency you are converting from (USD, EUR, JPY, GBP, AUD): ");
+                String fromCurrency = scan.nextLine().toUpperCase();
+
+                System.out.println("Enter the currency you are converting to (USD, EUR, JPY, GBP, AUD): ");
+                String toCurrency = scan.nextLine().toUpperCase();
+
+                try {
+                    BigDecimal convertedAmount = currencyExchange.convert(amount, fromCurrency, toCurrency);
+                    System.out.println("Converted amount: " + convertedAmount + " " + toCurrency);
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
             }
+
 
             if (choice == 8) {
 
