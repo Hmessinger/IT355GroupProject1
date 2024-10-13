@@ -24,7 +24,29 @@ class BankAccount {
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
 
     // private final String password = "hello";
-    //MSC-03 
+/**
+ * Constructs a {@code BankAccount} with the specified account holder's information,
+ * including their name, customer ID, account number, and initial balances for both 
+ * savings and checking accounts.
+ * 
+ * This constructor initializes all the fields for a bank account without hardcoding 
+ * any sensitive information like customer ID or account number. By accepting these 
+ * details as parameters, it ensures that sensitive information is provided dynamically 
+ * and securely at runtime, adhering to secure coding guidelines.
+ * 
+ * Compliance with MSC03-J: Never hard code sensitive information:
+ * 
+ * This constructor does not hard code sensitive information such as customer ID, 
+ * account number, or balances. These values are provided through parameters, 
+ * allowing for secure input handling at runtime.
+ * 
+ * 
+ * @param name the name of the account holder
+ * @param customerId the unique customer ID associated with the account holder
+ * @param accountNumber the unique account number of the bank account
+ * @param savingsBalance the initial balance in the savings account
+ * @param checkingsBalance the initial balance in the checking account
+ */ 
     public BankAccount(String name, int customerId, int accountNumber, double savingsBalance, double checkingsBalance) {
         this.checkingsBalance = checkingsBalance;
         this.savingsBalance = savingsBalance;

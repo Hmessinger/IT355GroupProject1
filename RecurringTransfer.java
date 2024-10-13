@@ -12,7 +12,7 @@ import java.util.TimerTask;
 public final class RecurringTransfer {
     private Timer timer;
     private final TransferManager transferManager;
-//This class also has OBJ57 because methods locating in final class
+
 /**
  * Constructs a RecurringTransfer instance with the specified TransferManager
  * MET05
@@ -56,7 +56,18 @@ public final class RecurringTransfer {
             }
         }, 0, intervalMs); // Schedule at a fixed interval
     }
-
+/**
+ * Cancels an ongoing recurring transfer, if one exists.
+ *
+ * <p>This method checks if the {@code timer} object, responsible for scheduling
+ * recurring transfers, is not {@code null}. If the timer is active, it cancels
+ * the scheduled transfer and prints a confirmation message to the console.
+ * 
+ * <p>This method ensures that no further automatic transfers will be made once
+ * the timer is cancelled.
+ * 
+ * @throws IllegalStateException if there is no recurring transfer scheduled (i.e., {@code timer} is {@code null}).
+ */
     public void cancelRecurringTransfer() {
         if (timer != null) {
             timer.cancel();
