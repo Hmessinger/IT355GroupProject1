@@ -28,9 +28,8 @@ public class BankSystem {
             System.err.println("Failed to initialize TransactionHistory");
             return;
         }
-    
+
         List<String> transactions = new ArrayList<>();
-        
 
         /*
          * We are performing validation checks on the user input before it is being used
@@ -39,8 +38,6 @@ public class BankSystem {
          * OBJ11-J: Be wary of letting constructors throw exceptions.
          */
         // Asks for users name
-        // System.out.println("Please input the customer name: ");
-        // String userName = scan.nextLine();
         while (true) {
             System.out.println("Please input the customer name: ");
             userName = scan.nextLine();
@@ -51,9 +48,6 @@ public class BankSystem {
             }
         }
 
-        // Asks for the users customer id
-        // System.out.println("\nPlease input the customer ID: ");
-        // int userCustomerID = scan.nextInt();
         // Asks for the users customer id, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the customer ID: ");
@@ -69,9 +63,6 @@ public class BankSystem {
             }
         }
 
-        // Asks for the account number
-        // System.out.println("\nPlease input the account number: ");
-        // int userAcctNum = scan.nextInt();
         // Asks for the account number, it will loop until a valid integer is entered
         while (true) {
             System.out.println("\nPlease input the account number: ");
@@ -87,8 +78,6 @@ public class BankSystem {
             }
         }
 
-        // System.out.println("\nPlease input the account password: ");
-        // String userPassword = scan.next();
         // Ask for the account password, it will loop until a valid password is entered
         while (true) {
             System.out.println("\nPlease input the account password: ");
@@ -99,9 +88,6 @@ public class BankSystem {
                 System.out.println("Invalid input. Please enter a password that is not empty.");
             }
         }
-
-        // System.out.println("\nPlease input initial deposit for checking account: ");
-        // double initialCheckingDeposit = scan.nextDouble();
         // Ask for the initial checking deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -122,8 +108,6 @@ public class BankSystem {
             }
         }
 
-        // System.out.println("\nPlease input initial deposit for savings account: ");
-        // double initialSavingsDeposit = scan.nextDouble();
         // Ask for the initial savings deposit, it will loop until a valid amount is
         // entered
         while (true) {
@@ -151,7 +135,6 @@ public class BankSystem {
                 initialSavingsDeposit, userPassword);
 
         System.out.print("\nAccount created successfully!\n");
-        System.out.print(account);
 
         System.out.println("\n     Bank Menu");
         System.out.println("======================");
