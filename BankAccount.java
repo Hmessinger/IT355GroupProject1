@@ -19,14 +19,17 @@ class BankAccount {
     private final String name;
     private final int customerId;
     private final int accountNumber;
-    private double savingsBalance;
-    private double checkingsBalance;
-    private String password;
+    // These variables are used and changed by multiple methods. We add the volatile
+    // keyword to them to ensure that changes made to these variables are
+    // immediately visible by all methods and classes.
+    // VNA00: Ensure visibility when accessing shared primitive variables.
+    private volatile double savingsBalance;
+    private volatile double checkingsBalance;
+    private volatile String password;
 
     // NUM10-J. Do not construct BigDecimal objects from floating-point literals
     private BigDecimal intrestRate = new BigDecimal("0.000000001");
 
-    // private final String password = "hello";
     /**
      * Constructs a {@code BankAccount} with the specified account holder's
      * information,
@@ -76,6 +79,7 @@ class BankAccount {
         this.password = password;
     }
 
+    // Getters and Setters
     public void setSavingsBalance(double savingsBalance) {
         this.savingsBalance = savingsBalance;
     }
