@@ -14,6 +14,8 @@ public class BankSystem {
         double initialCheckingDeposit;
         double initialSavingsDeposit;
 
+        System.out.println("Welcome to the Bank System.");
+
         /*
          * We are performing validation checks on the user input before it is being used
          * by the BankAccount constructor. This prevents the constructor from throwing
@@ -171,6 +173,7 @@ public class BankSystem {
 
             System.out.println("Please input your choice <1-9>");
             choice = scan.nextInt();
+            scan.nextLine();
             System.out.println("You selected: " + choice);
 
             if (choice == 1) {
@@ -187,11 +190,24 @@ public class BankSystem {
             }
 
             if (choice == 4) {
-
+                ManualPassword mp = new ManualPassword();
+                String newPassword;
+                while (true) {
+                    System.out.println("\nPlease input your new password: ");
+                    newPassword = scan.nextLine();
+                    if (newPassword != null && !newPassword.isEmpty()) {
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please enter a password that is not empty.");
+                    }
+                }
+                mp.generateManualPassword(account, newPassword);
             }
 
             if (choice == 5) {
-
+                System.out.println("\n");
+                RandomPassword rp = new RandomPassword();
+                rp.generateRandomPassword(account);
             }
 
             if (choice == 6) {
@@ -211,7 +227,7 @@ public class BankSystem {
                 System.out.println("======================");
             }
         }
-        System.out.println("\nloop has exited");
+        System.out.println("\nYou have exited the bank system.");
         scan.close();
     }
 }
