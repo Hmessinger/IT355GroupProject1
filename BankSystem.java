@@ -222,9 +222,8 @@ public class BankSystem {
                     System.out.println("1: Transfer from Savings to Checking");
                     System.out.println("2: Transfer from Checking to Savings");
                     System.out.println("3: Show Transfer History");
-                    System.out.println("4: Set Up Recurring Transfer");
-                    System.out.println("5: Exit Transfer Menu");
-                    System.out.print("Please input your choice <1-5>: ");
+                    System.out.println("4: Exit");
+                    System.out.print("Please input your choice <1-4>: ");
                     transferChoice = scan.nextInt();
 
                     switch (transferChoice) {
@@ -250,15 +249,10 @@ public class BankSystem {
                             }
                             break;
                         case 4:
-                            System.out.println("Please enter the information below.");
-                            System.out.println("How much would you like to transfer?");
-                            double amount3 = scan.nextDouble();
-                            break;
-                        case 5:
                             System.out.println("Exiting Transfer Funds Menu.");
                             break;
                         default:
-                            System.out.println("Invalid choice. Please select between 1 and 5.");
+                            System.out.println("Invalid choice. Please select between 1 and 4.");
                             break;
                     }
 
