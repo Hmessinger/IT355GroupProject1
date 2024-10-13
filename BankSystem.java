@@ -2,6 +2,7 @@
 // Main function file
 import java.util.Scanner;
 import java.util.List;
+import java.util.ArrayList;
 import java.math.BigDecimal;
 
 public class BankSystem {
@@ -14,6 +15,16 @@ public class BankSystem {
         int userAcctNum;
         double initialCheckingDeposit;
         double initialSavingsDeposit;
+
+        // Transaction Constructor
+        TransactionHistory transactionHistory = TransactionHistory.createSafely();
+        if (transactionHistory == null) {
+            System.err.println("Failed to initialize TransactionHistory");
+            return;
+        }
+    
+        List<String> transactions = new ArrayList<>();
+        
 
         /*
          * We are performing validation checks on the user input before it is being used
@@ -199,7 +210,8 @@ public class BankSystem {
             }
 
             if (choice == 6) {
-
+                System.out.println("\nYour transaction history:");
+                transactionHistory.generateReceipt(account, transactions);
             }
 
             if (choice == 7) {
