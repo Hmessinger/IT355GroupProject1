@@ -79,11 +79,16 @@ public class BankSystem {
             System.out.println("\nPlease input the account password: ");
             userPassword = scan.nextLine();
             if (userPassword != null && !userPassword.isEmpty()) {
-                break;
+                if (userPassword.codePointCount(0, userPassword.length()) < 8) {
+                    System.out.println("Password must contain at least 8 characters.");
+                } else {
+                    break;
+                }
             } else {
                 System.out.println("Invalid input. Please enter a password that is not empty.");
             }
         }
+        
         // Ask for the initial checking deposit, it will loop until a valid amount is
         // entered
         while (true) {
